@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-onebot-touxian",
-  "description": "qq群头衔修改",
-  "version": "0.0.1",
+  "description": "🌟让一般路过群u也能修改自己的头衔!（需要bot是群主）",
+  "version": "0.1.0-beta.1+20260616",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [

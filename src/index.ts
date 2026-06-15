@@ -1,41 +1,38 @@
-import { Context, Schema } from 'koishi'
+import { Context, h } from 'koishi';
 import {} from 'koishi-plugin-adapter-onebot';
+import { Config } from './config';
+import { usage } from './usage';
 
+export { Config, usage };
 
-export const name = 'onebot-touxian'
-
-export interface Config {
-  /** 允许使用 ast 指令（给他人设置头衔）的用户 ID 列表 */
-  adminUsers: string[]
-}
-
-export const Config: Schema<Config> = Schema.object({
-  adminUsers: Schema.array(Schema.string())
-    .default([])
-    .role('table')
-    .description('允许使用 ast 指令（给他人设置头衔）的qq号列表'),
-})
+export const name = 'onebot-touxian';
 
 export function apply(ctx: Context, config: Config) {
 
-  // ============ 指令1: ast（管理员给他人设置头衔） ============
+  const send = (session: any, msg: string) => {
+    if (!config.verboseSessionLog) return;
+    const quote = config.enableQuote !== false ? h.quote(session.messageId) : '';
+    return session.send(`${quote}${msg}`);
+  };
+
+  // ============ 👑 👑 指令1: ast（管理员给他人设置头衔） ============
   // 用法：ast 头衔内容 @用户 / ast 头衔内容 用户ID
-  ctx.command("ast [title:text]", "给指定用户设置头衔（需要权限）")
+  ctx.command(`${config.adminCommandName} [title:text]`, "给指定用户设置头衔（需要权限）")
+    .alias("ast")
     .alias("awa_set_title")
-    .alias('设置头衔')
     .action(async ({ session }, title) => {
       if (!session.onebot) {
-        await session.send("[error] 当前会话不支持 onebot 协议。");
+        await send(session, "❌ 请在onebot平台使用本指令。");
         return;
       }
       if (!session.channelId) {
-        await session.send("[error] 当前不在群聊中。");
+        await send(session, "❌ 当前不在群聊中。");
         return;
       }
 
       // 权限检查：只有 adminUsers 列表中的用户才能使用
       if (!config.adminUsers.includes(session.userId)) {
-        await session.send("[error] 你没有权限使用此指令喵~");
+        await send(session, "❌ 你没有权限使用此指令喵~");
         return;
       }
 
@@ -61,9 +58,18 @@ export function apply(ctx: Context, config: Config) {
         }
       }
 
+      // 尝试从 title 末尾提取 QQ 号
+      if (!resolvedUserId && title) {
+        const parts = title.match(/^(.*?)\s+(\d+)$/);
+        if (parts) {
+          title = parts[1].trim();
+          resolvedUserId = parts[2];
+        }
+      }
+
+      // 默认目标用户为自己
       if (!resolvedUserId) {
-        await session.send("[error] 请 @ 一个要设置头衔的用户喵~");
-        return;
+        resolvedUserId = session.userId;
       }
 
       if (!title) {
@@ -75,23 +81,25 @@ export function apply(ctx: Context, config: Config) {
         resolvedUserId,
         title,
         -1,
-      )
-    })
+      );
 
-  // ============ 指令2: 自助头衔（给自己设置头衔） ============
-  ctx.command("自助头衔 <title:text>", "给自己设置专属头衔")
+      await send(session, `✅ 已为 ${resolvedUserId} 设置头衔为「${title || '(空)'}」`);
+    });
+
+  // ============ 🙋 🙋 指令2: 自助头衔（给自己设置头衔） ============
+  ctx.command(`${config.selfCommandName} <title:text>`, "给自己设置专属头衔")
     .action(async ({ session }, title) => {
       if (!session.onebot) {
-        await session.send("[error] 当前会话不支持 onebot 协议。");
+        await send(session, "❌ 请在onebot平台使用本指令。");
         return;
       }
       if (!session.channelId) {
-        await session.send("[error] 当前不在群聊中。");
+        await send(session, "❌ 当前不在群聊中。");
         return;
       }
 
       if (!title) {
-        await session.send("[error] 请输入你想要的头衔喵~ 用法：自助头衔 <头衔内容>");
+        await send(session, `❌ 请输入你想要的头衔喵~ 用法：${config.selfCommandName} <头衔内容>`);
         return;
       }
 
@@ -100,6 +108,8 @@ export function apply(ctx: Context, config: Config) {
         session.userId,
         title,
         -1,
-      )
-    })
+      );
+
+      await send(session, `✅ 已为你设置头衔为「${title}」`);
+    });
 }
