@@ -3,16 +3,18 @@ import { resolve } from 'path';
 
 const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'));
 
+const KOISHI_LOGO_BASE64 = 'data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABU0lEQVR42p2UQSsFYRSGnxnqLuytKWKpKFkQNsS%2FsOHPWPADLCmxU5S7UzYWNrJR7lYiRF2FeWzOMKZ7mXHqNNP5vvP2nu%2B850CY2lP4X1K31ZbaDm%2BpO%2Bpyp5wfAXVEPfRvO1JHf4AVQGbUh7j4EZ4VkrNCXPVRnf3CUBN1SH2KC28VGOV3ntRhNclZHdcAKYM11QR1oVBOXctzFlNgBTC8qmXxPQEegbVeYApIgJT6tg%2F0AdMp0B%2FBpCabK2AAmAAa%2F2GRBft1oBFPkqTAba7LCiAfQC9wClwAY1HJHepuiO29Yrsf1Dn1uiDU3RTYCtTkl1Leg8k9MB4NGgReI28rV3azgyCz0og01Xl1Uz1QX8uCTELm3UbkTF1VJ9Wr0tn3iBSGdjYG0XivE3VN3VD31PM4a3cc2tIGGI0VkTO7rLxGuiy25ejmjfqsvkSXui62TxaK03td4FXTAAAAAElFTkSuQmCC';
+
 export const usage = `
 <h1>🏷️ Koishi 插件：onebot-touxian - QQ 群头衔修改</h1>
 <h2>🎯 插件版本：v${pkg.version}</h2>
 
 <p>
   <a href="https://www.npmjs.com/package/koishi-plugin-onebot-touxian" target="_blank">
-    <img src="https://img.shields.io/npm/v/koishi-plugin-onebot-touxian?style=flat-square" alt="npm version">
+    <img src="https://img.shields.io/npm/v/koishi-plugin-onebot-touxian?style=flat-square&logo=npm" alt="npm version">
   </a>
   <a href="https://npm-stat.com/charts.html?package=koishi-plugin-onebot-touxian" target="_blank">
-    <img src="https://img.shields.io/npm/dm/koishi-plugin-onebot-touxian?style=flat-square" alt="npm download">
+    <img src="https://img.shields.io/npm/dm/koishi-plugin-onebot-touxian?style=flat-square&logo=npm" alt="npm download">
   </a>
   <br>
   <a href="https://github.com/settings" target="_blank">
@@ -23,7 +25,7 @@ export const usage = `
   </a>
   <br>
   <a href="https://forum.koishi.xyz/t/topic/12605" target="_blank">
-    <img src="https://img.shields.io/badge/forum.koishi.xyz_topic_12605-5546A3?style=for-the-badge&logo=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Ff%2Ff3%2FKoishi.js_Logo.png&logoColor=white" alt="Forum">
+    <img src="https://img.shields.io/badge/Koishi%20Forum-12605-5546A3?style=for-the-badge&labelColor=3A3A3A&logo=${KOISHI_LOGO_BASE64}&logoColor=white" alt="Koishi Forum">
   </a>
   <br>
   <a href="https://qm.qq.com/q/9EPM99GBTq" target="_blank">
