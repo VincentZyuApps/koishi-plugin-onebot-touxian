@@ -14,16 +14,19 @@ export const usage = `
   <a href="https://www.npmjs.com/package/koishi-plugin-onebot-touxian" target="_blank">
     <img src="https://img.shields.io/npm/dm/koishi-plugin-onebot-touxian?style=flat-square" alt="npm download">
   </a>
+  <br>
   <a href="https://github.com/settings" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
   </a>
   <a href="https://gitee.com/settings" target="_blank">
     <img src="https://img.shields.io/badge/Gitee-C71D23?style=for-the-badge&logo=gitee&logoColor=white" alt="Gitee">
   </a>
+  <br>
   <a href="https://forum.koishi.xyz/" target="_blank">
     <img src="https://img.shields.io/badge/Koishi Forum-5546A3?style=for-the-badge&logo=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Ff%2Ff3%2FKoishi.js_Logo.png&logoColor=white" alt="Forum">
   </a>
-  <a href="https://qm.qq.com/q/1085190201" target="_blank">
+  <br>
+  <a href="https://qm.qq.com/q/9EPM99GBTq" target="_blank">
     <img src="https://img.shields.io/badge/QQ群-1085190201-12B7F5?style=flat-square&logo=qq&logoColor=white" alt="QQ群">
   </a>
 </p>
