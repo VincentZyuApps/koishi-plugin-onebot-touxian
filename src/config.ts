@@ -4,7 +4,7 @@ export interface Config {
   // ==== 💬 消息设置 ====
   /** 💬 是否自动引用回复触发指令的消息 */
   enableQuote: boolean
-  /** 🔊 是否发送执行结果消息 */
+  /** 🔊 详细会话明细：开启后，成功提示中会额外附带原头衔变更对比与会话指令明细；关闭时仅输出简洁提示 */
   verboseSessionLog: boolean
 
   // ==== 📝 指令设置 ====

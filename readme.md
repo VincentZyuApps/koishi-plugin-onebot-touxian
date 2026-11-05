@@ -5,8 +5,8 @@
 [![npm](https://img.shields.io/npm/v/koishi-plugin-onebot-touxian?style=flat-square&logo=npm)](https://www.npmjs.com/package/koishi-plugin-onebot-touxian)
 [![npm-download](https://img.shields.io/npm/dm/koishi-plugin-onebot-touxian?style=flat-square&logo=npm)](https://npm-stat.com/charts.html?package=koishi-plugin-onebot-touxian)
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/settings)
-[![Gitee](https://img.shields.io/badge/Gitee-C71D23?style=for-the-badge&logo=gitee&logoColor=white)](https://gitee.com/settings)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/VincentZyuApps/koishi-plugin-onebot-touxian)
+[![Gitee](https://img.shields.io/badge/Gitee-C71D23?style=for-the-badge&logo=gitee&logoColor=white)](https://gitee.com/vincent-zyu/koishi-plugin-onebot-touxian)
 
 [![Koishi Forum](https://img.shields.io/badge/Koishi%20Forum-12605-5546A3?style=for-the-badge&labelColor=3A3A3A&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABU0lEQVR42p2UQSsFYRSGnxnqLuytKWKpKFkQNsS%2FsOHPWPADLCmxU5S7UzYWNrJR7lYiRF2FeWzOMKZ7mXHqNNP5vvP2nu%2B850CY2lP4X1K31ZbaDm%2BpO%2Bpyp5wfAXVEPfRvO1JHf4AVQGbUh7j4EZ4VkrNCXPVRnf3CUBN1SH2KC28VGOV3ntRhNclZHdcAKYM11QR1oVBOXctzFlNgBTC8qmXxPQEegbVeYApIgJT6tg%2F0AdMp0B%2FBpCabK2AAmAAa%2F2GRBft1oBFPkqTAba7LCiAfQC9wClwAY1HJHepuiO29Yrsf1Dn1uiDU3RTYCtTkl1Leg8k9MB4NGgReI28rV3azgyCz0og01Xl1Uz1QX8uCTELm3UbkTF1VJ9Wr0tn3iBSGdjYG0XivE3VN3VD31PM4a3cc2tIGGI0VkTO7rLxGuiy25ejmjfqsvkSXui62TxaK03td4FXTAAAAAElFTkSuQmCC&logoColor=white)](https://forum.koishi.xyz/t/topic/12605)
 [![QQ群](https://img.shields.io/badge/QQ群-1085190201-12B7F5?style=flat-square&logo=qq&logoColor=white)](https://qm.qq.com/q/9EPM99GBTq)
@@ -69,23 +69,36 @@ npm install koishi-plugin-onebot-touxian
 需要先将自己的 QQ 号添加到配置的 `adminUsers` 列表中。
 
 ```bash
-设置头衔 ThisIsALongTouxian @VincentZyu
+# 通过 @ 方式为他人设置头衔
+/ast 可爱捏 @someone
 ```
-> 可以通过 @ 方式指定用户并设置头衔
 
 ```bash
-设置头衔 ThisIsAnotherLongTouxian 1830540513
+# 直接传入 QQ 号设置头衔
+/ast 可爱捏 1830540513
 ```
-> 也可以传入qq号
+
+```bash
+# 清空指定成员的头衔
+/ast @someone
+```
 
 ---
 
 ### 2️⃣ 自助设置头衔
 
-任何人都可以使用，为自己设置专属群头衔。
+群内任何成员均可使用，为自己设置专属群头衔。
 
 ```bash
-自助头衔 ThisIsMyTitle
+/ats 这是我的专属头衔
+```
+
+---
+
+### 3️⃣ 呼出指引教程
+
+```bash
+/atg
 ```
 
 ---

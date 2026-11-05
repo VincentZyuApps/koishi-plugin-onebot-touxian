@@ -171,10 +171,10 @@ html.dark .card-pink, .theme-root.dark .card-pink, .dark .card-pink {
     <img src="https://img.shields.io/npm/dm/koishi-plugin-onebot-touxian?style=flat-square&logo=npm" alt="npm download">
   </a>
   <br>
-  <a href="https://github.com/settings" target="_blank">
+  <a href="https://github.com/VincentZyuApps/koishi-plugin-onebot-touxian" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
   </a>
-  <a href="https://gitee.com/settings" target="_blank">
+  <a href="https://gitee.com/vincent-zyu/koishi-plugin-onebot-touxian" target="_blank">
     <img src="https://img.shields.io/badge/Gitee-C71D23?style=for-the-badge&logo=gitee&logoColor=white" alt="Gitee">
   </a>
   <br>
