@@ -36,10 +36,11 @@ export const usage = `
 <hr>
 
 <h2>✨ 功能概述</h2>
-<p>在 QQ 群中通过指令修改群成员的群头衔（群特殊头衔），支持两种模式：</p>
+<p>在 QQ 群中通过指令便捷修改群成员的群头衔（群特殊头衔）：</p>
 <ul>
-  <li><b>管理员设置</b> — 管理员使用 <code>设置头衔</code> 指令为指定成员设置头衔</li>
-  <li><b>自助设置</b> — 群成员使用 <code>自助头衔</code> 指令为自己设置头衔</li>
+  <li>👑 <b>管理员设置</b> — 管理员使用 <code>设置头衔</code> 指令为指定成员设置头衔</li>
+  <li>🆓 <b>自助设置</b> — 普通群成员使用 <code>自助头衔</code> 指令为自己设置专属头衔</li>
+  <li>📖 <b>指引教程</b> — 使用 <code>开头衔指引</code> 发送群主开启头衔展示的高清图文教程</li>
 </ul>
 
 <hr>
@@ -56,7 +57,7 @@ export const usage = `
   <br>
   <li>
     <code>设置头衔 头衔内容 123456</code><br>
-    → 直接输入 QQ 号设置头衔（需根据 onebot 实现支持情况）
+    → 直接输入 QQ 号设置头衔
   </li>
   <br>
   <li>
@@ -71,11 +72,27 @@ export const usage = `
     <code>自助头衔 我的专属头衔</code><br>
     → 将自己的群头衔设置为"我的专属头衔"
   </li>
+  <br>
+  <li>
+    <b>别名：</b><code>ats</code> / <code>awa_title_self</code>
+  </li>
+</ul>
+
+<h3>3️⃣ 开头衔指引 — 查看开启群头衔展示指引</h3>
+<p>在群内发送开启群头衔展示的详细图文配置指引。</p>
+<ul>
+  <li>
+    <code>开头衔指引</code>
+  </li>
+  <br>
+  <li>
+    <b>别名：</b><code>atg</code> / <code>awa_title_guide</code>
+  </li>
 </ul>
 
 <hr>
 
-<h2>⚙️ 配置项</h2>
+<h2>⚙️ 配置项说明</h2>
 <table>
   <tr>
     <th>配置项</th>
@@ -93,15 +110,49 @@ export const usage = `
     <td><code>selfCommandName</code></td>
     <td><code>string</code></td>
     <td><code>自助头衔</code></td>
-    <td>给自己设置头衔的指令名</td>
+    <td>给自己设置头衔的指令名（别名 <code>ats</code> / <code>awa_title_self</code> 固定可用）</td>
+  </tr>
+  <tr>
+    <td><code>guideCommandName</code></td>
+    <td><code>string</code></td>
+    <td><code>开头衔指引</code></td>
+    <td>查看开启群头衔展示教程的指令名（别名 <code>atg</code> / <code>awa_title_guide</code> 固定可用）</td>
+  </tr>
+  <tr>
+    <td><code>guideImageUrls</code></td>
+    <td><code>string[]</code></td>
+    <td>预置 Gitee / jsDelivr / GitHub</td>
+    <td>开头衔指引图片的候选 URL 列表（支持配置备用源）。</td>
+  </tr>
+  <tr>
+    <td><code>enableQuote</code></td>
+    <td><code>boolean</code></td>
+    <td><code>true</code></td>
+    <td>是否自动引用回复触发指令的消息</td>
+  </tr>
+  <tr>
+    <td><code>verboseSessionLog</code></td>
+    <td><code>boolean</code></td>
+    <td><code>false</code></td>
+    <td>详细会话明细：在成功提示中额外附带原头衔变更对比与会话指令明细</td>
   </tr>
   <tr>
     <td><code>adminUsers</code></td>
     <td><code>string[]</code></td>
-    <td><code>[]</code></td>
+    <td><code>['1830540513']</code></td>
     <td>允许使用管理指令的 QQ 号列表</td>
   </tr>
 </table>
+
+<blockquote>
+  <b>💡 提示：如果想更换指引图样式</b><br>
+  在配置项 <code>guideImageUrls</code> 中，只需将 URL 末尾的文件名替换为对应样式即可：
+  <ul>
+    <li><code>guide_overview_2x2grid.png</code> — <b>2x2 网格版</b>（默认，方正大气，适合 PC/横版文档）</li>
+    <li><code>guide_overview_vertical.png</code> — <b>4x1 单列竖排长图版</b>（纵向长图流，适合手机滑动阅读）</li>
+    <li><code>guide_overview_horizontal.png</code> — <b>1x4 横向排版</b>（宽屏横向 Banner 流）</li>
+  </ul>
+</blockquote>
 
 <hr>
 

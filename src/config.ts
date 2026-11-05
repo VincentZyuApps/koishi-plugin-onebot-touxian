@@ -55,7 +55,7 @@ export const Config: Schema<Config> = Schema.intersect([
         'https://cdn.jsdelivr.net/gh/VincentZyuApps/koishi-plugin-onebot-touxian@main/doc/images/guide/guide_overview_2x2grid.png',
         'https://raw.githubusercontent.com/VincentZyuApps/koishi-plugin-onebot-touxian/main/doc/images/guide/guide_overview_2x2grid.png',
       ])
-      .description('🖼️ 开头衔指引图片的候选 URL 列表（支持配置多个候选源，优先采用首选地址；顺序建议 Gitee ➔ jsDelivr ➔ GitHub）'),
+      .description('🖼️ 开头衔指引图片的候选 URL 列表（支持配置多个候选源，优先采用首选地址；顺序建议 Gitee ➔ jsDelivr ➔ GitHub）。💡 提示：如果想更换指引图样式，只需将 URL 末尾的文件名替换即可：\n- guide_overview_2x2grid.png (2x2 网格版，默认推荐)\n- guide_overview_vertical.png (4x1 单列竖排长图版，适合手机阅读)\n- guide_overview_horizontal.png (1x4 横向长图版)'),
   }).description('==== 🖼️ 指引图片设置 ===='),
 
   // ==== 👑 管理员设置 ====

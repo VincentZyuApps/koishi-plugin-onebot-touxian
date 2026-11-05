@@ -55,6 +55,11 @@ npm install koishi-plugin-onebot-touxian
 
 ![QQ群专属头衔显示配置指引](https://cdn.jsdelivr.net/gh/VincentZyuApps/koishi-plugin-onebot-touxian@main/doc/images/guide/guide_overview_2x2grid.png)
 
+> 💡 **指引图样式切换**：本插件在 `doc/images/guide/` 中内置了三种精美排版样式的大图，若想切换群内指引发送的样式，只需在配置项 `guideImageUrls` 中把末尾文件名替换即可：
+> - `guide_overview_2x2grid.png` — **2x2 网格版**（默认，方正大气，适合 PC/横版文档）
+> - `guide_overview_vertical.png` — **4x1 单列竖排长图版**（纵向长图流，适合手机滑动浏览）
+> - `guide_overview_horizontal.png` — **1x4 横向排版**（宽屏 Banner 流）
+
 ---
 
 ## 📝 使用示例
