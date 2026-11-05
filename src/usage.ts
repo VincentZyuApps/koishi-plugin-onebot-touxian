@@ -99,11 +99,11 @@ export const usage = `
   --card-title-color: #553c9a;
   --card-hint-color: #6b46c1;
 }
-.card-slate {
-  --card-border: rgba(74, 85, 104, 0.35);
-  --card-summary-bg: rgba(74, 85, 104, 0.1);
-  --card-title-color: #2d3748;
-  --card-hint-color: #4a5568;
+.card-cyan {
+  --card-border: rgba(49, 151, 149, 0.35);
+  --card-summary-bg: rgba(49, 151, 149, 0.1);
+  --card-title-color: #234e52;
+  --card-hint-color: #285e61;
 }
 .card-pink {
   --card-border: rgba(229, 62, 62, 0.35);
@@ -137,17 +137,26 @@ html.dark .card-purple, .theme-root.dark .card-purple {
   --card-title-color: #d6bcfa;
   --card-hint-color: #b794f4;
 }
-html.dark .card-slate, .theme-root.dark .card-slate {
-  --card-border: rgba(160, 174, 192, 0.45);
-  --card-summary-bg: rgba(160, 174, 192, 0.16);
-  --card-title-color: #e2e8f0;
-  --card-hint-color: #cbd5e0;
+html.dark .card-cyan, .theme-root.dark .card-cyan, .dark .card-cyan {
+  --card-border: rgba(78, 205, 196, 0.45);
+  --card-summary-bg: rgba(78, 205, 196, 0.18);
+  --card-title-color: #4fd1c5;
+  --card-hint-color: #81e6d9;
 }
-html.dark .card-pink, .theme-root.dark .card-pink {
+html.dark .card-pink, .theme-root.dark .card-pink, .dark .card-pink {
   --card-border: rgba(245, 101, 101, 0.45);
   --card-summary-bg: rgba(245, 101, 101, 0.16);
   --card-title-color: #feb2b2;
   --card-hint-color: #fc8181;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .card-green { --card-title-color: #68d391; --card-summary-bg: rgba(72,187,120,0.18); }
+  :root:not(.light) .card-orange { --card-title-color: #f6ad55; --card-summary-bg: rgba(237,137,54,0.18); }
+  :root:not(.light) .card-blue { --card-title-color: #63b3ed; --card-summary-bg: rgba(66,153,225,0.18); }
+  :root:not(.light) .card-purple { --card-title-color: #b794f4; --card-summary-bg: rgba(159,122,234,0.18); }
+  :root:not(.light) .card-cyan { --card-title-color: #4fd1c5; --card-summary-bg: rgba(78,205,196,0.18); }
+  :root:not(.light) .card-pink { --card-title-color: #fc8181; --card-summary-bg: rgba(245,101,101,0.18); }
 }
 </style>
 
@@ -307,10 +316,10 @@ html.dark .card-pink, .theme-root.dark .card-pink {
 </div>
 </details>
 
-<!-- ================= 折叠区域 5: 蓝灰卡片 - 全配置项解析 ================= -->
-<details class="k-usage-card card-slate" style="${baseDetailsStyle}">
+<!-- ================= 折叠区域 5: 清爽青蓝卡片 - 全配置项解析 (杜绝暗黑隐身) ================= -->
+<details class="k-usage-card card-cyan" style="${baseDetailsStyle}">
 <summary style="${baseSummaryStyle}">
-  <span>⚙️ 全配置项详细解析表</span>
+  <span style="color: var(--card-title-color, var(--k-text-dark, #4fd1c5));">⚙️ 全配置项详细解析表</span>
   <span class="k-fold-hint">
     <span class="k-fold-state"></span>
     <span class="k-arrow-icon">▼</span>
