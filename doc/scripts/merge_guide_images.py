@@ -7,7 +7,7 @@
 """
 QQ 群专属头衔开启指南 - 步骤截图合并脚本
 将 guide 目录下的 4 张步骤截图合成一张精美的说明大图（支持 2x2 网格与 1x4 横向流）。
-文字字号经过放大强化（1.6x~1.8x），在移动端与 Web 预览中极为醒目清晰。
+文字经过放大强化，且每个卡片的小字描述采用优雅的双行排版，彻底解决单行超长换行问题。
 """
 
 from pathlib import Path
@@ -25,31 +25,43 @@ FONT_DIR = KOISHI_ROOT / "data" / "fonts"
 FONT_BOLD = FONT_DIR / "LXGWWenKaiMono-Medium.ttf"
 FONT_REGULAR = FONT_DIR / "LXGWWenKaiMono-Regular.ttf"
 
-# 4 个步骤的元数据定义
+# 4 个步骤的元数据定义（小字精确设计为双行展示）
 STEPS = [
     {
         "filename": "step1.群主手机qq点进群然后右上角三个横线点击管理群.png",
         "tag": "Step 1",
         "title": "点击「管理群」",
-        "desc": "群主在手机 QQ 进入目标群聊，点击右上角「···」菜单，选择「管理群」",
+        "lines": [
+            "群主在手机 QQ 进入目标群聊",
+            "点击右上角「···」菜单并选择「管理群」",
+        ],
     },
     {
         "filename": "step2.点击个性管理.png",
         "tag": "Step 2",
         "title": "点击「个性管理」",
-        "desc": "在群管理界面中向下滑动，找到并点击「个性管理」选项",
+        "lines": [
+            "在群管理界面中向下滑动",
+            "找到并点击进入「个性管理」选项",
+        ],
     },
     {
         "filename": "step3.点击群头衔和标识管理.png",
         "tag": "Step 3",
         "title": "群头衔和标识管理",
-        "desc": "在个性管理页面中，点击进入「群头衔和标识管理」子菜单",
+        "lines": [
+            "在个性管理功能列表中",
+            "点击进入「群头衔和标识管理」子菜单",
+        ],
     },
     {
         "filename": "step4.打开展示成员群头衔.png",
         "tag": "Step 4",
         "title": "开启「展示成员群头衔」",
-        "desc": "确认并开启「展示成员群头衔」开关，头衔即可在群聊界面正常展示",
+        "lines": [
+            "确认并开启「展示成员群头衔」开关",
+            "开启后头衔即可在群聊界面正常展示",
+        ],
     },
 ]
 
@@ -77,7 +89,6 @@ def create_rounded_image(im: Image.Image, radius: int) -> Image.Image:
 def generate_guide_grid(scale: float = 0.5) -> Path:
     """生成 2x2 网格排版的精美大图 (guide_overview_2x2grid.png)"""
     print(f"正在加载字体: {FONT_BOLD}")
-    # 文字放大约 1.7x ~ 1.8x
     title_font = load_font(FONT_BOLD, int(72 * scale * 2))
     sub_font = load_font(FONT_REGULAR, int(38 * scale * 2))
     card_title_font = load_font(FONT_BOLD, int(46 * scale * 2))
@@ -89,9 +100,9 @@ def generate_guide_grid(scale: float = 0.5) -> Path:
     card_img_w = int(1260 * scale)
     card_img_h = int(2800 * scale)
 
-    # 布局间距（相应增加文本展示区高度）
+    # 布局间距（双行文本需要 190px 高度）
     card_padding = int(30 * scale * 2)
-    card_text_h = int(160 * scale * 2)
+    card_text_h = int(190 * scale * 2)
     card_w = card_img_w + card_padding * 2
     card_h = card_img_h + card_text_h + card_padding * 2
 
@@ -139,7 +150,7 @@ def generate_guide_grid(scale: float = 0.5) -> Path:
             width=max(1, int(2 * scale * 2)),
         )
 
-        # 绘制步骤徽章 Tag（自动按大文字计算尺寸）
+        # 绘制步骤徽章 Tag
         tag_bg = tag_colors[idx]
         tag_text = step_meta["tag"]
         tag_box_w = int(120 * scale * 2)
@@ -163,15 +174,20 @@ def generate_guide_grid(scale: float = 0.5) -> Path:
             fill=(255, 255, 255),
         )
 
-        # 绘制步骤标题与描述
+        # 绘制卡片标题
         text_x = tag_x + tag_box_w + int(18 * scale * 2)
         draw.text((text_x, tag_y + int(2 * scale * 2)), step_meta["title"], font=card_title_font, fill=(30, 41, 59))
-        draw.text(
-            (tag_x, tag_y + int(64 * scale * 2)),
-            step_meta["desc"],
-            font=card_desc_font,
-            fill=(100, 116, 139),
-        )
+
+        # 绘制双行小字描述
+        desc_start_y = tag_y + tag_box_h + int(16 * scale * 2)
+        line_height = int(40 * scale * 2)
+        for l_idx, line in enumerate(step_meta["lines"]):
+            draw.text(
+                (tag_x, desc_start_y + l_idx * line_height),
+                line,
+                font=card_desc_font,
+                fill=(100, 116, 139),
+            )
 
         # 读取并贴入手机截图
         img_file = GUIDE_DIR / step_meta["filename"]
@@ -219,8 +235,9 @@ def generate_guide_horizontal(scale: float = 0.45) -> Path:
     card_img_w = int(1260 * scale)
     card_img_h = int(2800 * scale)
 
+    # 布局间距（双行文本需要 180px 高度）
     card_padding = int(26 * scale * 2)
-    card_text_h = int(160 * scale * 2)
+    card_text_h = int(180 * scale * 2)
     card_w = card_img_w + card_padding * 2
     card_h = card_img_h + card_text_h + card_padding * 2
 
@@ -281,7 +298,17 @@ def generate_guide_horizontal(scale: float = 0.45) -> Path:
         )
 
         draw.text((tag_x + tag_box_w + int(14 * scale * 2), tag_y + int(2 * scale * 2)), step_meta["title"], font=card_title_font, fill=(30, 41, 59))
-        draw.text((tag_x, tag_y + int(58 * scale * 2)), step_meta["desc"], font=card_desc_font, fill=(100, 116, 139))
+
+        # 双行小字
+        desc_start_y = tag_y + tag_box_h + int(14 * scale * 2)
+        line_height = int(36 * scale * 2)
+        for l_idx, line in enumerate(step_meta["lines"]):
+            draw.text(
+                (tag_x, desc_start_y + l_idx * line_height),
+                line,
+                font=card_desc_font,
+                fill=(100, 116, 139),
+            )
 
         img_file = GUIDE_DIR / step_meta["filename"]
         if img_file.exists():
@@ -312,15 +339,7 @@ def generate_guide_horizontal(scale: float = 0.45) -> Path:
 
 
 if __name__ == "__main__":
-    print("=== 开始生成群头衔指引大图（文字放大版） ===")
+    print("=== 开始生成群头衔指引大图（双行小字版） ===")
     generate_guide_grid(scale=0.5)
     generate_guide_horizontal(scale=0.45)
-    # 清理旧的未带 2x2grid 后缀的文件（如果存在）
-    old_file = GUIDE_DIR / "guide_overview.png"
-    if old_file.exists():
-        try:
-            old_file.unlink()
-            print(f"已清理旧文件名: {old_file}")
-        except Exception:
-            pass
     print("=== 全部生成完成 ===")
