@@ -24,7 +24,7 @@ export const Config: Schema<Config> = Schema.intersect([
     enableQuote: Schema.boolean().default(true)
       .description('💬 开启后，本插件发送的消息都会引用回复触发指令的消息'),
     verboseSessionLog: Schema.boolean().default(false)
-      .description('🔊 开启后指令执行结果会发送消息提示；关闭后静默执行，不发送任何消息'),
+      .description('🔊 详细会话明细：开启后，成功提示中会额外附带原头衔变更对比与会话指令明细；关闭时仅输出简洁提示'),
   }).description('==== 💬 消息设置 ===='),
 
   // ==== 📝 指令设置 ====
