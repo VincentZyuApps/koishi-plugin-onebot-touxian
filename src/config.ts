@@ -12,6 +12,12 @@ export interface Config {
   adminCommandName: string
   /** 📝 自助设置头衔的指令名 */
   selfCommandName: string
+  /** 📝 查看开启群头衔展示指引教程的指令名 */
+  guideCommandName: string
+
+  // ==== 🖼️ 指引图片设置 ====
+  /** 🖼️ 开头衔指引图片的候选 URL 列表（支持配置多个备用源，优先采用首选地址） */
+  guideImageUrls: string[]
 
   // ==== 👑 管理员设置 ====
   /** 👑 允许使用管理指令的用户 ID 列表 */
@@ -34,8 +40,23 @@ export const Config: Schema<Config> = Schema.intersect([
       .description('📝 管理员给他人设置头衔的指令名（别名 ast / awa_set_title 固定可用）'),
     selfCommandName: Schema.string()
       .default('自助头衔')
-      .description('📝 给自己设置头衔的指令名'),
+      .description('📝 给自己设置头衔的指令名（别名 ats / awa_title_self 固定可用）'),
+    guideCommandName: Schema.string()
+      .default('开头衔指引')
+      .description('📝 查看开启群头衔展示指引教程的指令名（别名 atg / awa_title_guide 固定可用）'),
   }).description('==== 📝 指令设置 ===='),
+
+  // ==== 🖼️ 指引图片设置 ====
+  Schema.object({
+    guideImageUrls: Schema.array(Schema.string())
+      .role('table')
+      .default([
+        'https://gitee.com/vincent-zyu/koishi-plugin-onebot-touxian/raw/main/doc/images/guide/guide_overview_2x2grid.png',
+        'https://cdn.jsdelivr.net/gh/VincentZyuApps/koishi-plugin-onebot-touxian@main/doc/images/guide/guide_overview_2x2grid.png',
+        'https://raw.githubusercontent.com/VincentZyuApps/koishi-plugin-onebot-touxian/main/doc/images/guide/guide_overview_2x2grid.png',
+      ])
+      .description('🖼️ 开头衔指引图片的候选 URL 列表（支持配置多个候选源，优先采用首选地址；顺序建议 Gitee ➔ jsDelivr ➔ GitHub）'),
+  }).description('==== 🖼️ 指引图片设置 ===='),
 
   // ==== 👑 管理员设置 ====
   Schema.object({

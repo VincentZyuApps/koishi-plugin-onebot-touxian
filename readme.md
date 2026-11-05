@@ -20,7 +20,7 @@
 
 ## 📷 预览
 
-![preview](doc/images/preview.png)
+![preview](https://cdn.jsdelivr.net/gh/VincentZyuApps/koishi-plugin-onebot-touxian@main/doc/images/preview/preview.png)
 
 ---
 
@@ -37,10 +37,11 @@ npm install koishi-plugin-onebot-touxian
 
 ## ✨ 功能特性
 
-- 👑 **管理员设置头衔** — 通过 `设置头衔` 指令为指定成员设置群头衔（需在配置中添加 QQ 号）
-- 🆓 **自助设置头衔** — 群成员通过 `自助头衔` 指令为自己设置专属头衔
+- 👑 **管理员设置头衔** — 通过 `设置头衔` 为指定成员设置群头衔（别名 `ast`, `awa_set_title`）
+- 🆓 **自助设置头衔** — 群成员通过 `自助头衔` 为自己设置专属头衔（别名 `ats`, `awa_title_self`）
+- 📖 **配置指引教程** — 通过 `开头衔指引` 查看群主开启头衔展示的图文指引（别名 `atg`, `awa_title_guide`）
 - 🏷️ **支持 @ 提及** — 通过 `@用户` 或直接输入 QQ 号指定目标用户
-- 🔄 **指令别名** — `设置头衔` 同时支持 `ast` 和 `awa_set_title` 两种别名
+- 🔊 **可选会话明细** — 支持显示原头衔变更对比与会话指令明细，排查更方便
 
 ---
 
@@ -50,7 +51,9 @@ npm install koishi-plugin-onebot-touxian
 
 手机QQ → 右上角 `☰` → `管理群` → `个性管理` → `群头衔和标识管理` → 开启 **「展示成员群头衔」**
 
-> 否则即使通过 API 设置了头衔，群成员也不会看到。
+> ⚠️ 否则即使通过 API / 机器人修改了头衔，群聊中也不会显示头衔气泡挂件。
+
+![QQ群专属头衔显示配置指引](https://cdn.jsdelivr.net/gh/VincentZyuApps/koishi-plugin-onebot-touxian@main/doc/images/guide/guide_overview_2x2grid.png)
 
 ---
 
@@ -86,6 +89,10 @@ npm install koishi-plugin-onebot-touxian
 
 | 配置项 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `adminCommandName` | `string` | `设置头衔` | 管理员给他人设置头衔的指令名|
-| `selfCommandName` | `string` | `自助头衔` | 给自己设置头衔的指令名 |
-| `adminUsers` | `string[]` | `[]` | 允许使用`设置头衔`指令的 QQ 号列表 |
+| `adminCommandName` | `string` | `设置头衔` | 管理员给他人设置头衔的指令名（别名 `ast`, `awa_set_title`） |
+| `selfCommandName` | `string` | `自助头衔` | 给自己设置头衔的指令名（别名 `ats`, `awa_title_self`） |
+| `guideCommandName` | `string` | `开头衔指引` | 查看开启群头衔展示指引教程的指令名（别名 `atg`, `awa_title_guide`） |
+| `guideImageUrls` | `string[]` | `['...']` | 开头衔指引图片的候选 URL 列表（支持配置 Gitee / jsDelivr / GitHub 候选源） |
+| `enableQuote` | `boolean` | `true` | 是否自动引用回复触发指令的消息 |
+| `verboseSessionLog` | `boolean` | `false` | 详细会话明细：成功提示中额外附带原头衔变更对比与会话指令明细 |
+| `adminUsers` | `string[]` | `['1830540513']` | 允许使用管理员设置头衔指令的 QQ 号列表 |
